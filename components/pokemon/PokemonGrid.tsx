@@ -4,8 +4,8 @@ import { useSearchParams } from 'next/navigation';
 import { usePokemon } from '@/hooks/usePokemon';
 import PokemonCard from '@/components/pokemon/PokemonCard';
 import { Pokemon } from '@/lib/types';
-import LoadingSkeleton from '@/components/common/LoadingSkeleton';
-import { EmptyState } from '@/components/common/EmptyState';
+import LoadingSkeleton from '@/components/ui/LoadingSkeleton';
+import { EmptyState } from '@/components/ui/EmptyState';
 import { Suspense } from 'react';
 
 interface PokemonGridProps {

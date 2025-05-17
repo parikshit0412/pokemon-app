@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { fetchPokemonList, fetchPokemonTypes } from '@/lib/api';
 import FilterForm from '@/components/pokemon/FilterForm';
-import LoadingSkeleton from '@/components/common/LoadingSkeleton';
+import LoadingSkeleton from '@/components/ui/LoadingSkeleton';
 import PokemonGridWrapper from '@/components/pokemon/PokemonGridWrapper';
 
 export default async function Home() {

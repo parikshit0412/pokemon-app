@@ -2,7 +2,7 @@
 
 import { Suspense } from 'react';
 import PokemonGrid from './PokemonGrid';
-import LoadingSkeleton from '@/components/common/LoadingSkeleton';
+import LoadingSkeleton from '@/components/ui/LoadingSkeleton';
 import { Pokemon } from '@/lib/types';
 
 interface PokemonGridWrapperProps {

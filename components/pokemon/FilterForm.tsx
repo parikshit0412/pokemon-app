@@ -3,8 +3,8 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import  useDebounce  from '@/hooks/useDebounce';
-import SearchInput from '@/components/common/SearchInput';
-import TypeSelect from '@/components/common/TypeSelect';
+import SearchInput from '@/components/ui/SearchInput';
+import TypeSelect from '@/components/ui/TypeSelect';
 import { PokemonType } from '@/lib/types';
 import { Suspense } from 'react';
 
