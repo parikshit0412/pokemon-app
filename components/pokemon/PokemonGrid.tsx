@@ -3,13 +3,13 @@
 import { useSearchParams } from 'next/navigation';
 import { usePokemon } from '@/hooks/usePokemon';
 import PokemonCard from '@/components/pokemon/PokemonCard';
-import { Pokemon } from '@/lib/types';
-import LoadingSkeleton from '@/components/common/LoadingSkeleton';
-import { EmptyState } from '@/components/common/EmptyState';
+import { PokemonAPIResponseType } from '@/lib/types';
+import LoadingSkeleton from '@/components/elements/LoadingSkeleton';
+import { EmptyState } from '@/components/elements/EmptyState';
 import { Suspense } from 'react';
 
 interface PokemonGridProps {
-  initialPokemon: Pokemon[];
+  initialPokemon: PokemonAPIResponseType[];
 }
 
 function PokemonGridContent({ initialPokemon }: PokemonGridProps) {
@@ -29,15 +29,15 @@ function PokemonGridContent({ initialPokemon }: PokemonGridProps) {
   if (!pokemonList.length) {
     return (
       <EmptyState 
-        title="No Pokémon found"
+        title="No Pokemon found"
         description={
           type && search
-            ? `No ${type} Pokémon matching "${search}"`
+            ? `No ${type} Pokemon matching "${search}"`
             : type
-            ? `No ${type} Pokémon found`
+            ? `No ${type} Pokemon found`
             : search
-            ? `No Pokémon matching "${search}"`
-            : 'No Pokémon available'
+            ? `No Pokemon matching "${search}"`
+            : 'No Pokemon available'
         }
       />
     );

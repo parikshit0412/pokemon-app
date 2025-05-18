@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { fetchPokemonDetails, fetchPokemonList } from '@/lib/api';
+import { getPokemonDetails, getPokemonList } from '@/lib/api';
 import DetailsCard from '@/components/pokemon/DetailsCard';
 import Breadcrumbs from '@/components/pokemon/Breadcrumbs';
 
@@ -9,7 +9,7 @@ export default async function PokemonDetailsPage({
   params: Promise<{ id: string }>;
 }) {
     const { id } = await params;
-  const pokemon = await fetchPokemonDetails(id);
+  const pokemon = await getPokemonDetails(id);
 
   if (!pokemon) {
     notFound();
@@ -24,14 +24,14 @@ export default async function PokemonDetailsPage({
 }
 
 export async function generateStaticParams() {
-  const pokemonList = await fetchPokemonList();
+  const pokemonList = await getPokemonList();
   
-  return pokemonList.slice(0, 151).map((pokemon) => ({
+  return pokemonList.slice(0, 50).map((pokemon) => ({
     id: pokemon.url.split('/').slice(-2, -1)[0],
   }));
 }
 
-export const revalidate = 86400;
+export const revalidate = 3600; // 1 hour
 
 export async function generateMetadata({
   params,
@@ -39,11 +39,11 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }) {
     const { id } = await params;
-  const pokemon = await fetchPokemonDetails(id);
+  const pokemon = await getPokemonDetails(id);
   
   return {
-    title: `${pokemon?.name || 'Pokémon'} | Details`,
-    description: `Information about ${pokemon?.name || 'this Pokémon'}`,
+    title: `${pokemon?.name || 'Pokemon'} | Details`,
+    description: `Information about ${pokemon?.name || 'this Pokemon'}`,
     openGraph: {
       images: pokemon?.sprites?.other['official-artwork'].front_default 
         ? [pokemon.sprites.other['official-artwork'].front_default] 

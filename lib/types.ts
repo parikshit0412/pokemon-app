@@ -1,4 +1,4 @@
-export interface Pokemon {
+export interface PokemonAPIResponseType {
     id: number;
     name: string;
     url: string;
@@ -39,11 +39,17 @@ export interface Pokemon {
   }
   
   export interface PokemonListResponse {
-    results: Pokemon[];
+    results: PokemonAPIResponseType[];
   }
   
   export interface TypeResponse {
     pokemon: {
-      pokemon: Pokemon;
+      pokemon: PokemonAPIResponseType;
     }[];
   }
+
+  export interface UsePokemonPropsType {
+  type?: string;
+  search?: string;
+  initialData: PokemonAPIResponseType[];
+}

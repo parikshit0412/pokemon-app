@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Pokemon } from '@/lib/types';
+import { PokemonAPIResponseType } from '@/lib/types';
 
 interface PokemonCardProps {
-  pokemon: Pokemon;
+  pokemon: PokemonAPIResponseType;
 }
 
 export default function PokemonCard({ pokemon }: PokemonCardProps) {

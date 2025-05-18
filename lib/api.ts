@@ -1,19 +1,19 @@
-import { Pokemon, PokemonType, PokemonListResponse, TypeResponse } from './types';
+import { PokemonAPIResponseType, PokemonType, PokemonListResponse, TypeResponse } from './types';
 
-export async function fetchPokemonList(
+export async function getPokemonList(
     type?: string,
     search?: string
-  ): Promise<Pokemon[]> {
+  ): Promise<PokemonAPIResponseType[]> {
     try {
-      let pokemonList: Pokemon[] = [];
+      let pokemonList: PokemonAPIResponseType[] = [];
       
       // First get Pokémon by type if specified
       if (type) {
-        const typeData = await fetchPokeAPI<TypeResponse>(`/type/${type}`);
-        pokemonList = typeData.pokemon.map((entry) => entry.pokemon);
+        const typeList = await getAPI<TypeResponse>(`/type/${type}`);
+        pokemonList = typeList.pokemon.map((entry) => entry.pokemon);
       } else {
         // Otherwise get all Pokémon
-        const response = await fetchPokeAPI<PokemonListResponse>('/pokemon?limit=151');
+        const response = await getAPI<PokemonListResponse>('/pokemon?limit=50');
         pokemonList = response.results;
       }
   
@@ -31,18 +31,18 @@ export async function fetchPokemonList(
     }
   }
 
-export async function fetchPokemonDetails(id: string): Promise<Pokemon | null> {
+export async function getPokemonDetails(id: string): Promise<PokemonAPIResponseType | null> {
   try {
-    return await fetchPokeAPI<Pokemon>(`/pokemon/${id}`);
+    return await getAPI<PokemonAPIResponseType>(`/pokemon/${id}`);
   } catch (error) {
     console.error('Error fetching Pokémon details:', error);
     return null;
   }
 }
 
-export async function fetchPokemonTypes(): Promise<PokemonType[]> {
+export async function getPokemonTypes(): Promise<PokemonType[]> {
   try {
-    const response = await fetchPokeAPI<{ results: PokemonType[] }>('/type');
+    const response = await getAPI<{ results: PokemonType[] }>('/type');
     return response.results.filter(
       type => !['unknown', 'shadow'].includes(type.name)
     );
@@ -52,7 +52,7 @@ export async function fetchPokemonTypes(): Promise<PokemonType[]> {
   }
 }
 
-async function fetchPokeAPI<T>(endpoint: string): Promise<T> {
+async function getAPI<T>(endpoint: string): Promise<T> {
   const normalizedEndpoint = endpoint.startsWith('/') 
     ? endpoint.slice(1) 
     : endpoint;
@@ -62,9 +62,10 @@ async function fetchPokeAPI<T>(endpoint: string): Promise<T> {
     : `https://pokeapi.co/api/v2/${normalizedEndpoint}`;
 
   const response = await fetch(url, {
+    cache: 'force-cache',
     next: { 
       tags: ['pokemon-data'],
-      revalidate: 86400
+      revalidate: 3600, // 1 hour
     }
   });
 

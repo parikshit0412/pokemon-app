@@ -1,13 +1,13 @@
 import { Suspense } from 'react';
-import { fetchPokemonList, fetchPokemonTypes } from '@/lib/api';
+import { getPokemonList, getPokemonTypes } from '@/lib/api';
 import FilterForm from '@/components/pokemon/FilterForm';
-import LoadingSkeleton from '@/components/common/LoadingSkeleton';
+import LoadingSkeleton from '@/components/elements/LoadingSkeleton';
 import PokemonGridWrapper from '@/components/pokemon/PokemonGridWrapper';
 
 export default async function Home() {
   const [initialPokemon, types] = await Promise.all([
-    fetchPokemonList(),
-    fetchPokemonTypes()
+    getPokemonList(),
+    getPokemonTypes()
   ]);
 
   return (

@@ -2,11 +2,11 @@
 
 import { Suspense } from 'react';
 import PokemonGrid from './PokemonGrid';
-import LoadingSkeleton from '@/components/common/LoadingSkeleton';
-import { Pokemon } from '@/lib/types';
+import LoadingSkeleton from '@/components/elements/LoadingSkeleton';
+import { PokemonAPIResponseType } from '@/lib/types';
 
 interface PokemonGridWrapperProps {
-  initialPokemon: Pokemon[];
+  initialPokemon: PokemonAPIResponseType[];
 }
 
 export default function PokemonGridWrapper({ initialPokemon }: PokemonGridWrapperProps) {

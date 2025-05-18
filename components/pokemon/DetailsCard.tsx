@@ -1,7 +1,7 @@
-import { Pokemon } from '@/lib/types';
+import { PokemonAPIResponseType } from '@/lib/types';
 import Image from 'next/image';
 
-export default function DetailsCard({ pokemon }: { pokemon: Pokemon }) {
+export default function DetailsCard({ pokemon }: { pokemon: PokemonAPIResponseType }) {
   return (
     <div className="rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
       {/* Top section - Teal background */}

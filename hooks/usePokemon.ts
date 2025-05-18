@@ -1,15 +1,11 @@
 import { useState, useEffect } from 'react';
-import { fetchPokemonList } from '@/lib/api';
-import { Pokemon } from '@/lib/types';
+import { getPokemonList } from '@/lib/api';
+import { PokemonAPIResponseType, UsePokemonPropsType } from '@/lib/types';
 
-interface UsePokemonProps {
-  type?: string;
-  search?: string;
-  initialData: Pokemon[];
-}
 
-export function usePokemon({ type, search, initialData }: UsePokemonProps) {
-  const [pokemonList, setPokemonList] = useState<Pokemon[]>(initialData);
+
+export function usePokemon({ type, search, initialData }: UsePokemonPropsType) {
+  const [pokemonList, setPokemonList] = useState<PokemonAPIResponseType[]>(initialData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -17,7 +13,7 @@ export function usePokemon({ type, search, initialData }: UsePokemonProps) {
     const loadPokemon = async () => {
       try {
         setLoading(true);
-        const data = await fetchPokemonList(type, search);
+        const data = await getPokemonList(type, search);
         setPokemonList(data);
         setError(null);
       } catch (err) {

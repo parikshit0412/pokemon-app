@@ -3,8 +3,8 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import  useDebounce  from '@/hooks/useDebounce';
-import SearchInput from '@/components/common/SearchInput';
-import TypeSelect from '@/components/common/TypeSelect';
+import SearchInput from '@/components/elements/SearchInput';
+import TypeSelect from '@/components/elements/TypeSelect';
 import { PokemonType } from '@/lib/types';
 import { Suspense } from 'react';
 
@@ -47,7 +47,7 @@ function FilterFormContent({ types }: FilterFormProps) {
         <SearchInput 
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search Pokémon by name..."
+          placeholder="Search Pokemon by name..."
         />
       </div>
       
