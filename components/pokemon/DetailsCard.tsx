@@ -16,14 +16,11 @@ export default function DetailsCard({ pokemon }: { pokemon: PokemonAPIResponseTy
         )}
       </div>
 
-      {/* Bottom section - Orange background */}
+      {/* Bottom section */}
       <div className="bg-orange-200 pt-14 px-6 pb-6">
-        {/* Name */}
         <h1 className="font-bold text-gray-900 mb-2 capitalize">
           Name: <span className="font-normal">{pokemon.name}</span>
         </h1>
-
-        {/* Type */}
         <p className="mb-3 text-gray-800 font-semibold">
           Type:
           <span className="ml-2 font-normal">
@@ -37,17 +34,12 @@ export default function DetailsCard({ pokemon }: { pokemon: PokemonAPIResponseTy
             ))}
           </span>
         </p>
-
-        {/* Stats */}
         <p className="mb-3 text-gray-800 font-semibold">
             Stats:
         <span className="ml-2 font-normal capitalize text-gray-700">
             {pokemon.stats.map((stat) => stat.stat.name.replace('-', ' ')).join(', ')}
         </span>
         </p>
-
-
-        {/* Abilities */}
         <p className="mb-3 text-gray-800 font-semibold">
           Abilities:
           <span className="ml-2 font-normal capitalize">
@@ -59,8 +51,6 @@ export default function DetailsCard({ pokemon }: { pokemon: PokemonAPIResponseTy
             ))}
           </span>
         </p>
-
-        {/* Moves */}
         <p className="text-gray-800 font-semibold">
           Some Moves:
           <span className="ml-2 font-normal capitalize">
